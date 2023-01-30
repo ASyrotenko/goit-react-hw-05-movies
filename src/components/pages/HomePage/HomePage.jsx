@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 import { getTrendingMovies } from 'components/shared/api/movies';
-import { smoothScroll } from 'components/shared/smoothScroll';
+import { smoothScroll } from 'components/shared/scripts/smoothScroll';
 
 import css from './home-page.module.css';
 
@@ -53,7 +53,7 @@ const HomePage = () => {
 
   return (
     <div className="container">
-      <h2>Trending today</h2>
+      <h2 className={css.homePAgeTitle}>Trending today</h2>
       {loading && <p>...Loading</p>}
       {error && <p>Error</p>}
       <ul className={css.list}>{elements}</ul>

@@ -4,6 +4,10 @@ main {
   padding: 20px 0;
 }
 
+main > .container {
+  text-align: center;
+}
+
 body {
   box-sizing: border-box;
   margin: 0;
@@ -35,11 +39,6 @@ code {
     monospace;
 }
 
-#root {
-  display: flex;
-  flex-direction: column;
-}
-
 header {
   padding: 20px 0;
   box-shadow: 0 1px 1px rgb(0 0 0 / 12%), 0 4px 4px rgb(0 0 0 / 6%),
@@ -47,7 +46,6 @@ header {
 }
 
 .container {
-  text-align: center;
   margin: 0 auto;
   max-width: 1140px;
   padding: 0 20px;

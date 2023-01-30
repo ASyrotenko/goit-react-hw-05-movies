@@ -6,7 +6,7 @@ import MoviePage from 'components/pages/MoviePage/MoviePage';
 const UserRoutes = () => {
   return (
     <Routes>
-      <Route path="/" element={<HomePage />} />
+      <Route path="/goit-react-hw-05-movies" element={<HomePage />} />
       <Route path="/movies" element={<MoviePage />} />
     </Routes>
   );
