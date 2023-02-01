@@ -44,7 +44,11 @@ const Movies = () => {
       {loading && <p>...Loading</p>}
       {error && <p>Error</p>}
       {<MovieList items={items} />}
-      <button type="button" onClick={onLoadMore} className={css.loadMoreBtn}>
+      <button
+        type="button"
+        onClick={onLoadMore}
+        className={`btn ${css.loadMoreBtn}`}
+      >
         Load more
       </button>
     </>

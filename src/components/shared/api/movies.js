@@ -16,3 +16,8 @@ export const getTrendingMovies = async page => {
 
   return data;
 };
+
+export const getSingleMovie = async id => {
+  const { data } = await instance.get(`/movie/${id}`);
+  return data;
+};

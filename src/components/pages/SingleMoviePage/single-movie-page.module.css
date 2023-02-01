@@ -1,0 +1,18 @@
+.movie__wrap {
+  display: flex;
+  margin-top: 40px;
+}
+
+.info__wrap {
+  padding: 40px 40px;
+  text-align: left;
+}
+
+.movie__title {
+  transition: color 250ms linear;
+}
+
+.movie__title:hover,
+.movie__title:focus {
+  color: #2196f3;
+}
