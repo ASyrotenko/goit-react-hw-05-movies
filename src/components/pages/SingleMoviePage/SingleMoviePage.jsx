@@ -5,15 +5,17 @@ import {
   useNavigate,
   useLocation,
   Outlet,
+  NavLink,
 } from 'react-router-dom';
 
 import css from './single-movie-page.module.css';
 
 import { getSingleMovie } from 'components/shared/api/movies';
 
-// const getReleaseDate = ({ release_date }) => {
-//   return release_date.slice(0, 4);
-// };
+const getClassName = ({ isActive }) => {
+  const className = isActive ? `${css.cast} ${css.active}` : css.cast;
+  return className;
+};
 
 const SingleMoviePage = () => {
   const [item, setItem] = useState({});
@@ -93,9 +95,27 @@ const SingleMoviePage = () => {
           <p className={css.movie__genresList}>{genresList}</p>
         </div>
       </div>
-      <Link state={{ from }} to={`/movies/${id}/credits`} className={css.cast}>
-        Cast
-      </Link>
+      <ul className={css.extraPages__list}>
+        <li className={css.extraPages__item}>
+          <NavLink
+            state={{ from }}
+            to={`/movies/${id}/credits`}
+            className={getClassName}
+          >
+            Cast
+          </NavLink>
+        </li>
+        <li className={css.extraPages__item}>
+          <NavLink
+            state={{ from }}
+            to={`/movies/${id}/reviews`}
+            className={getClassName}
+          >
+            Reviews
+          </NavLink>
+        </li>
+      </ul>
+
       <Outlet />
     </div>
   );

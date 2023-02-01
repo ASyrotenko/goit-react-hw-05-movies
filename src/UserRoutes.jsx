@@ -4,6 +4,7 @@ import HomePage from 'components/pages/HomePage/HomePage';
 import MoviePage from 'components/pages/MoviePage/MoviePage';
 import SingleMoviePage from 'components/pages/SingleMoviePage/SingleMoviePage';
 import SingleMovieCreditsPage from 'components/pages/SingleMovieCreditsPage/SingleMovieCreditsPage';
+import SingleMovieReviewsPage from 'components/pages/SingleMovieReviewsPage/SingleMovieReviewsPage';
 
 const UserRoutes = () => {
   return (
@@ -12,6 +13,7 @@ const UserRoutes = () => {
       <Route path="/movies" element={<MoviePage />} />
       <Route path="/movies/:id" element={<SingleMoviePage />}>
         <Route path="credits" element={<SingleMovieCreditsPage />} />
+        <Route path="reviews" element={<SingleMovieReviewsPage />} />
       </Route>
     </Routes>
   );

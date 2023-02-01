@@ -13,6 +13,12 @@
   padding: 5px;
   font-weight: 600;
   position: relative;
+  transition: color 250ms linear;
+}
+
+.link:hover,
+.link:focus {
+  color: #2196f3;
 }
 
 .active {
