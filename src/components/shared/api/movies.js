@@ -21,3 +21,8 @@ export const getSingleMovie = async id => {
   const { data } = await instance.get(`/movie/${id}`);
   return data;
 };
+
+export const getSingleMovieCredits = async id => {
+  const { data } = await instance.get(`/movie/${id}/credits`);
+  return data;
+};

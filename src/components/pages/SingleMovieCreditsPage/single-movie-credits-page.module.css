@@ -1,0 +1,17 @@
+.cast__list {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.cast__item {
+  width: 100px;
+}
+
+.actor__name,
+.actor__character {
+  margin-top: 5px;
+  text-align: center;
+}

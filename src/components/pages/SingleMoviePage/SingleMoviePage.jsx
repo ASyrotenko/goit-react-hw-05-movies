@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { useParams, useNavigate, useLocation, Outlet } from 'react-router-dom';
+import {
+  useParams,
+  Link,
+  useNavigate,
+  useLocation,
+  Outlet,
+} from 'react-router-dom';
 
 import css from './single-movie-page.module.css';
 
@@ -80,13 +86,16 @@ const SingleMoviePage = () => {
               {original_title} ({date})
             </a>
           </h2>
-          <p>User score: {vote_average}</p>
-          <h3>Overview</h3>
-          <p>{overview}</p>
-          <h3>Genres</h3>
-          <p>{genresList}</p>
+          <p className={css.movie__score}>User score: {vote_average}</p>
+          <h3 className={css.movie__overviewTitle}>Overview</h3>
+          <p className={css.movie__overviewText}>{overview}</p>
+          <h3 className={css.movie__genresTitle}>Genres</h3>
+          <p className={css.movie__genresList}>{genresList}</p>
         </div>
       </div>
+      <Link state={{ from }} to={`/movies/${id}/credits`} className={css.cast}>
+        Cast
+      </Link>
       <Outlet />
     </div>
   );
