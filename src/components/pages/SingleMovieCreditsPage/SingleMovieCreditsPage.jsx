@@ -36,8 +36,8 @@ const SingleMovieCreditsPage = () => {
         <img
           src={profile_path ? avatar : defaultActorImg}
           alt={name}
-          width="100"
-          height="150"
+          width="150"
+          height="225"
         />
         <p className={css.actor__name}>{name}</p>
         <p className={css.actor__character}>

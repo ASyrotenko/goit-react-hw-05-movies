@@ -1,6 +1,8 @@
 .movie__wrap {
   display: flex;
   margin-top: 40px;
+  box-shadow: -1px 0px 1px rgb(0 0 0 / 12%), -12px 11px 15px rgb(0 0 0 / 6%),
+    1px 4px 6px rgb(0 0 0 / 16%);
 }
 
 .info__wrap {

@@ -14,20 +14,22 @@ const Movies = () => {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log('useEffect');
     const fetchAPI = async () => {
       setLoading(true);
       try {
+        console.log(items);
         const result = await getTrendingMovies(page);
         if (page === 1) {
           return setItems([...result.results]);
         }
         setItems(prevState => [...prevState, ...result.results]);
+        console.log(items);
         smoothScroll(page);
       } catch (error) {
         setError(error.message);
       } finally {
         setLoading(false);
+        console.log(items);
       }
     };
 
@@ -36,7 +38,6 @@ const Movies = () => {
 
   const onLoadMore = () => {
     setPage(prevState => prevState + 1);
-    console.log('click');
   };
 
   return (

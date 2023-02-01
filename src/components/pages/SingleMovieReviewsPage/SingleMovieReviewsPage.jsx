@@ -9,15 +9,20 @@ const SingleMovieReviewsPage = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [noResults, setNoResults] = useState(false);
 
   const { id } = useParams();
 
   useEffect(() => {
     setLoading(true);
     const fetchCredits = async () => {
+      setLoading(true);
       try {
         const { results } = await getSingleMovieReviews(id);
         setReviews([...results]);
+        if (!results.length) {
+          setNoResults(true);
+        }
       } catch (error) {
         setError(error.message);
       } finally {
@@ -36,7 +41,17 @@ const SingleMovieReviewsPage = () => {
       <p className={css.review__content}>{content}</p>
     </li>
   ));
-  return <ul className={css.review__list}>{elements}</ul>;
+
+  return (
+    <>
+      {loading && <p>...Loading</p>}
+      {error && <p>Oops. Something goes wrong. Please try again.</p>}
+      {noResults && (
+        <p className={css.no__reviews}>There is no reviews for this movie.</p>
+      )}
+      <ul className={css.review__list}>{elements}</ul>
+    </>
+  );
 };
 
 export default SingleMovieReviewsPage;
