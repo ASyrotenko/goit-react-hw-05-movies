@@ -1,4 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
+import defaultMovieImg from '../../../images/default-movie-img.jpg';
 
 import css from './movie-list.module.css';
 
@@ -8,7 +9,11 @@ const MovieList = ({ items }) => {
     <li key={id} className={css.movieLink}>
       <Link state={{ from: location }} to={`/movies/${id}`}>
         <img
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/original/${poster_path}`
+              : defaultMovieImg
+          }
           alt={title}
           className={css.movieImg}
         />

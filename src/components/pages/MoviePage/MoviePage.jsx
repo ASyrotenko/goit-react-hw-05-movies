@@ -1,7 +1,63 @@
+import { useState, useEffect } from 'react';
+
+// import css from './movie-page.css';
+
+import MovieSearchForm from 'components/modules/MovieSearchForm/MovieSearchForm';
+import MovieList from 'components/modules/MovieList/MovieList';
+
+import { getSearchMovie } from 'components/shared/api/movies';
+
 const MoviePage = () => {
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
+  const [noResults, setNoResults] = useState(false);
+
+  useEffect(() => {
+    const fetchMovie = async () => {
+      setLoading(true);
+      try {
+        const { results } = await getSearchMovie(search);
+        if (results.length === 0) {
+          setNoResults(true);
+        }
+        setItems([...results]);
+      } catch (error) {
+        setError(error.message);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (search) {
+      fetchMovie();
+    }
+  }, [search]);
+
+  const reset = () => {
+    setItems([]);
+    setError(null);
+    setNoResults(false);
+  };
+
+  const changeSearch = search => {
+    reset();
+    setSearch(search);
+  };
+
   return (
     <div className="container">
       <h2>MoviePage</h2>
+      <MovieSearchForm onSubmit={changeSearch} />
+      {items.length > 0 && <MovieList items={items} />}
+      {noResults && (
+        <p>
+          We don't have any movies for <b>{search}</b>
+        </p>
+      )}
+      {loading && <p>...loading</p>}
+      {error && <p>Oops. Something goes wrong. Please try again.</p>}
     </div>
   );
 };
