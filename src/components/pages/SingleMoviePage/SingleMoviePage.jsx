@@ -6,10 +6,12 @@ import {
   Outlet,
   NavLink,
 } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 
 import css from './single-movie-page.module.css';
 
 import { getSingleMovie } from 'components/shared/api/movies';
+import defaultMovieImg from '../../../images/default-movie-img.jpg';
 
 const getClassName = ({ isActive }) => {
   const className = isActive ? `${css.cast} ${css.active}` : css.cast;
@@ -70,14 +72,22 @@ const SingleMoviePage = () => {
 
   return (
     <div className="container">
-      {loading && <p>...Loading</p>}
+      {loading && (
+        <div className="loading__container">
+          <TailSpin color="#2196f3" />
+        </div>
+      )}
       {error && <p>Oops. Something goes wrong. Please try again.</p>}
       <button type="button" onClick={goBack} className="btn">
         Go back
       </button>
       <div className={css.movie__wrap}>
         <img
-          src={`https://image.tmdb.org/t/p/original/${poster_path}`}
+          src={
+            poster_path
+              ? `https://image.tmdb.org/t/p/original/${poster_path}`
+              : defaultMovieImg
+          }
           alt=""
           width="250"
         />

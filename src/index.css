@@ -81,3 +81,17 @@ a {
   color: #fff;
   background-color: #2196f3;
 }
+
+.loading__container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loading__container__reviews_cast {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+}

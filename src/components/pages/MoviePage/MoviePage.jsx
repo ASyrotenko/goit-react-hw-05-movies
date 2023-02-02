@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 
 import css from './movie-page.module.css';
 
@@ -55,11 +56,15 @@ const MoviePage = () => {
       <MovieSearchForm onSubmit={changeSearch} />
       {items.length > 0 && <MovieList items={items} />}
       {noResults && (
-        <p>
+        <p className={css.noResults__text}>
           We don't have any movies for <b>{search}</b>
         </p>
       )}
-      {loading && <p>...loading</p>}
+      {loading && (
+        <div className="loading__container">
+          <TailSpin color="#2196f3" />
+        </div>
+      )}
       {error && <p>Oops. Something goes wrong. Please try again.</p>}
     </div>
   );

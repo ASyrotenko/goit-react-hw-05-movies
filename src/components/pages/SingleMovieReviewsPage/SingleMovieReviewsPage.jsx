@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 
 import css from './single-movie-reviews-page.module.css';
 
@@ -44,7 +45,11 @@ const SingleMovieReviewsPage = () => {
 
   return (
     <>
-      {loading && <p>...Loading</p>}
+      {loading && (
+        <div className="loading__container__reviews_cast">
+          <TailSpin color="#2196f3" />
+        </div>
+      )}
       {error && <p>Oops. Something goes wrong. Please try again.</p>}
       {noResults && (
         <p className={css.no__reviews}>There is no reviews for this movie.</p>

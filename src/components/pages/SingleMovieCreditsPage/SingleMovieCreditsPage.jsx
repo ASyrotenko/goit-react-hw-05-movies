@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import { TailSpin } from 'react-loader-spinner';
 
 import css from './single-movie-credits-page.module.css';
 
@@ -10,6 +11,7 @@ const SingleMovieCreditsPage = () => {
   const [cast, setCast] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [noResults, setNoResults] = useState(false);
 
   const { id } = useParams();
 
@@ -19,6 +21,9 @@ const SingleMovieCreditsPage = () => {
       try {
         const response = await getSingleMovieCredits(id);
         setCast([...response.cast]);
+        if (!response.cast.length) {
+          setNoResults(true);
+        }
       } catch (error) {
         setError(error.message);
       } finally {
@@ -49,8 +54,17 @@ const SingleMovieCreditsPage = () => {
 
   return (
     <>
-      {loading && <p>...loading</p>}
+      {loading && (
+        <div className="loading__container__reviews_cast">
+          <TailSpin color="#2196f3" />
+        </div>
+      )}
       {error && <p>Oops. Something goes wrong. Please try again.</p>}
+      {noResults && (
+        <p className={css.no__reviews}>
+          There is no information about actors for this movie.
+        </p>
+      )}
       <ul className={css.cast__list}>{elements}</ul>
     </>
   );

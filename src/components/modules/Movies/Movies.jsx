@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { TailSpin } from 'react-loader-spinner';
 
 import MovieList from '../MovieList/MovieList';
 
@@ -39,16 +40,22 @@ const Movies = () => {
 
   return (
     <>
-      {loading && <p>...Loading</p>}
+      {loading && (
+        <div className="loading__container">
+          <TailSpin color="#2196f3" />
+        </div>
+      )}
       {error && <p>Error</p>}
       {<MovieList items={items} />}
-      <button
-        type="button"
-        onClick={onLoadMore}
-        className={`btn ${css.loadMoreBtn}`}
-      >
-        Load more
-      </button>
+      {items.length > 0 && (
+        <button
+          type="button"
+          onClick={onLoadMore}
+          className={`btn ${css.loadMoreBtn}`}
+        >
+          Load more
+        </button>
+      )}
     </>
   );
 };
