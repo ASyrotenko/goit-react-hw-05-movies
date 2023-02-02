@@ -54,7 +54,7 @@ header {
   margin: 0 auto;
   max-width: 1140px;
   padding: 0 20px;
-  outline: 1px solid tomato;
+  /* outline: 1px solid tomato; */
 }
 
 ul {

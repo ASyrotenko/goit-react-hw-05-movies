@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
-// import css from './movie-page.css';
+import css from './movie-page.module.css';
 
 import MovieSearchForm from 'components/modules/MovieSearchForm/MovieSearchForm';
 import MovieList from 'components/modules/MovieList/MovieList';
@@ -11,8 +12,10 @@ const MoviePage = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [search, setSearch] = useState('');
   const [noResults, setNoResults] = useState(false);
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const search = searchParams.get('query');
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -43,12 +46,12 @@ const MoviePage = () => {
 
   const changeSearch = search => {
     reset();
-    setSearch(search);
+    setSearchParams({ query: search });
   };
 
   return (
     <div className="container">
-      <h2>MoviePage</h2>
+      <h2 className={css.moviePage__title}>Search movie</h2>
       <MovieSearchForm onSubmit={changeSearch} />
       {items.length > 0 && <MovieList items={items} />}
       {noResults && (

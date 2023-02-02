@@ -1,5 +1,6 @@
 import { Link, useLocation } from 'react-router-dom';
 import defaultMovieImg from '../../../images/default-movie-img.jpg';
+import PropTypes from 'prop-types';
 
 import css from './movie-list.module.css';
 
@@ -26,3 +27,7 @@ const MovieList = ({ items }) => {
 };
 
 export default MovieList;
+
+MovieList.propTypes = {
+  items: PropTypes.array,
+};
